@@ -17,7 +17,7 @@ class Form1 : Window
 
    Button button1
    {
-      this, text = "button1", position = { 192, 72 };
+      this, text = $"button1", position = { 192, 72 };
 
       bool NotifyClicked(Button button, int x, int y, Modifiers mods)
       {

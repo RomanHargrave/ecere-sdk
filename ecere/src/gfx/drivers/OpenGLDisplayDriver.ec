@@ -2545,8 +2545,11 @@ class OpenGLDisplayDriver : DisplayDriver
 #endif
       //Logf("DisplayScreen\n");
 
-      glFlush();
-      glFinish();
+#if !defined(__ANDROID__)
+      /*glFlush();
+      glFinish();*/
+#endif
+
 #if defined(__WIN32__) || defined(USEPBUFFER)
       if(display.alphaBlend)
       {
@@ -2769,7 +2772,9 @@ class OpenGLDisplayDriver : DisplayDriver
 
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+#ifndef __ANDROID__
          glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.0 );
+#endif
 
          glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
@@ -4301,6 +4306,33 @@ class OpenGLDisplayDriver : DisplayDriver
             glEnd();
          }
          else*/
+#endif
+
+#ifdef EM_MODE
+         /*
+         if(true)
+         {
+            int c;
+            glBegin(primitiveTypes[primitive->type.primitiveType]);
+            if(primitive->data)
+            {
+               OGLIndices oglIndices = primitive->data;
+               MeshFeatures flags = mesh.flags;
+               for(c = 0; c<primitive->nIndices; c++)
+               {
+                  uint16 index = ((uint16 *) oglIndices.indices)[c];
+
+                  //if(flags.normals) glNormal3fv((float *)&mesh.normals[index]);
+                  if(flags.normals) glNormal3f(mesh.normals[index].x, mesh.normals[index].y, mesh.normals[index].z);
+                  //if(flags.texCoords1) glTexCoord2fv((float *)&mesh.texCoords[index]);
+                  if(flags.colors) glColor4fv((float *)&mesh.colors[index]);
+                  glVertex3fv((float *)&mesh.vertices[index]);
+               }
+            }
+            glEnd();
+         }
+         else
+         */
 #endif
 
          {

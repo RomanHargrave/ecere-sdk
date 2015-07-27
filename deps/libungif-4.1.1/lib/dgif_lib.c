@@ -74,8 +74,10 @@ GifFileType *DGifOpenFileName(const char *FileName)
     }
 
     GifFile = DGifOpenFileHandle(FileHandle);
+#if !defined(__EMSCRIPTEN__)
     if (GifFile == (GifFileType *)NULL)
         close(FileHandle);
+#endif
     return GifFile;
 }
 

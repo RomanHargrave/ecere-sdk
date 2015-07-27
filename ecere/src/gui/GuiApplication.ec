@@ -747,7 +747,7 @@ public:
 #endif
                wait = !ProcessInput(true);
 #if !defined(__EMSCRIPTEN__)
-#ifdef _DEBUG
+#if defined(_DEBUG) && !defined(MEMINFO)
                if(lockMutex.owningThread != GetCurrentThreadID())
                   PrintLn("WARNING: ProcessInput returned unlocked GUI!");
 #endif

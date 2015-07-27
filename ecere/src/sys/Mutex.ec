@@ -1,3 +1,6 @@
+#ifdef MEMINFO
+#undef _DEBUG
+#endif
 
 #if defined(__ANDROID__)
 #include <android/log.h>

@@ -54,7 +54,7 @@ static WordStatus GetKeyWord(char ** input, char * keyWord, int maxSize)
    return GetKeyWordEx(input, keyWord, maxSize, true);
 }
 
-#define CHARBUFSIZE  65536
+#define CHARBUFSIZE  (65536 * 10)
 
 class XMLParser
 {

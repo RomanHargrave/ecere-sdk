@@ -1154,6 +1154,9 @@ public:
          }
          return;
       }
+#ifdef _DEBUG
+      if(incoming)    // TOFIX: Null pointer crash
+#endif
       CreateEdge(from, soft);
    }
 

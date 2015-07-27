@@ -50,7 +50,7 @@ class EmscriptenInterface : Interface
 
    bool ::ProcessInput(bool processAll)
    {
-      sflnprintf("class(EmscriptenInterface) ::ProcessInput [STUB!]\n");
+      // sflnprintf("class(EmscriptenInterface) ::ProcessInput [STUB!]\n");
       return false;
    }
 

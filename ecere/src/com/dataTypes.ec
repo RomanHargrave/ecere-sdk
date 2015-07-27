@@ -694,7 +694,7 @@ static const char * OnGetString(Class _class, void * data, char * tempString, vo
                   else // if(_class /*memberType*/.type != bitClass)
                   {
                      DataValue value { };
-                     if(_class.type == bitClass)
+                     if(_class.type == bitClass && !memberType.noExpansion)
                      {
                         BitMember bitMember = (BitMember) member;
                         // TODO: Check if base type is 32 or 64 bit

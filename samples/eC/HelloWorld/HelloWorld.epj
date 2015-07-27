@@ -25,6 +25,17 @@
             ],
             "FastMath" : false
          }
+      },
+      {
+         "Name" : "Emscripten",
+         "Options" : {
+            "Libraries" : [
+               "ecereCOMStatic"
+            ],
+            "LibraryDirs" : [
+               "../../../ecere/obj/ecereCOM.emscripten.linux.emscripten"
+            ]
+         }
       }
    ],
    "Files" : [

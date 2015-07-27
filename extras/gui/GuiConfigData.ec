@@ -32,7 +32,7 @@ public:
 
    void saveWindowInit(const char * configId, Window window)
    {
-      sflnprintf("GuiConfigData::saveWindowInit\n");
+      //sflnprintf("GuiConfigData::saveWindowInit\n");
       applyWindowConfig(configId, window);
       {
          bool isNew = false;
@@ -55,7 +55,7 @@ public:
 
    void saveWindowState(const char * configId, Window window, WindowState state)
    {
-      sflnprintf("GuiConfigData::saveWindowState\n");
+      //sflnprintf("GuiConfigData::saveWindowState\n");
       GuiDataWindow guiData = insertWindowConfig(configId, false, null);
       if(guiData)
       {
@@ -69,7 +69,7 @@ public:
 
    void saveWindowPosition(const char * configId, Window window, Point position, Size size)
    {
-      sflnprintf("GuiConfigData::saveWindowPosition\n");
+      //sflnprintf("GuiConfigData::saveWindowPosition\n");
       GuiDataWindow guiData = insertWindowConfig(configId, false, null);
       if(guiData && window.state == normal)
       {
@@ -85,7 +85,7 @@ public:
 
    void saveWindowSize(const char * configId, Window window, Size size)
    {
-      sflnprintf("GuiConfigData::saveWindowSize\n");
+      //sflnprintf("GuiConfigData::saveWindowSize\n");
       GuiDataWindow guiData = insertWindowConfig(configId, false, null);
       if(guiData && window.state == normal)
       {
@@ -96,7 +96,7 @@ public:
 
    void saveWindowClose(const char * configId)
    {
-      sflnprintf("GuiConfigData::saveWindowClose\n");
+      //sflnprintf("GuiConfigData::saveWindowClose\n");
       GuiDataWindow guiData = getWindowConfig(configId);
       if(guiData)
          guiData.saving = false;
@@ -106,7 +106,7 @@ public:
 
    void savePaneSplitterSize(const char * configId, double scaleSplit)
    {
-      sflnprintf("GuiConfigData::savePaneSplitterSize\n");
+      //sflnprintf("GuiConfigData::savePaneSplitterSize\n");
       GuiDataPaneSplitter guiData = null;
       if(!paneSplitters)
          paneSplitters = { };
@@ -186,14 +186,14 @@ private:
 
    void recordWindowPosition(GuiDataWindow guiData, Window window)
    {
-      sflnprintf("GuiConfigData::recordWindowPosition\n");
+      //sflnprintf("GuiConfigData::recordWindowPosition\n");
       guiData.position = { window.normalAnchor.left.distance, window.normalAnchor.top.distance };
       sflnPrintLn("recordWindowPosition(guiData.position == ", guiData.position, ", created == ", window.created, ")");
    }
 
    void recordWindowSize(GuiDataWindow guiData, Window window)
    {
-      sflnprintf("GuiConfigData::recordWindowSize\n");
+      //sflnprintf("GuiConfigData::recordWindowSize\n");
       //Size s;
       //sflnPrintLn(guiData.size);
       //s = window.normalSizeAnchor.size;
@@ -206,7 +206,7 @@ private:
 
    void applyWindowConfig(const char * configId, Window window)
    {
-      sflnprintf("GuiConfigData::applyWindowConfig\n");
+      //sflnprintf("GuiConfigData::applyWindowConfig\n");
       GuiDataWindow guiData = getWindowConfig(configId);
       if(guiData)
       {
@@ -223,14 +223,14 @@ private:
 
    void applyWindowPosition(Window window, GuiDataWindow guiData)
    {
-      sflnprintf("GuiConfigData::applyWindowPosition\n");
+      //sflnprintf("GuiConfigData::applyWindowPosition\n");
       window.position = guiData.position;
       sflnPrintLn("applyWindowPosition(window.position == ", window.position, ", created == ", window.created, ")");
    }
 
    void applyWindowSize(Window window, GuiDataWindow guiData)
    {
-      sflnprintf("GuiConfigData::applyWindowSize\n");
+      //sflnprintf("GuiConfigData::applyWindowSize\n");
       if(guiData.size.w && guiData.size.h)
       {
          window.size = guiData.size;
@@ -258,7 +258,7 @@ class SavedConfigWindow : Window
 
    bool OnCreate()
    {
-      sflnprintf("SavedConfigWindow::OnCreate\n");
+      //sflnprintf("SavedConfigWindow::OnCreate\n");
       bool result = Window::OnCreate();
       if(result)
       {
@@ -270,7 +270,7 @@ class SavedConfigWindow : Window
 
    bool OnPostCreate()
    {
-      sflnprintf("SavedConfigWindow::OnPostCreate\n");
+      //sflnprintf("SavedConfigWindow::OnPostCreate\n");
       bool result = Window::OnPostCreate();
       if(result)
       {
@@ -291,7 +291,7 @@ class SavedConfigWindow : Window
 
    bool OnStateChange(WindowState state, Modifiers mods)
    {
-      sflnprintf("SavedConfigWindow::OnStateChange\n");
+      //sflnprintf("SavedConfigWindow::OnStateChange\n");
       GuiConfigData data = getGuiConfigData();
       if(data) data.saveWindowState(getGuiConfigInstanceId(), this, state);
       return true;
@@ -299,21 +299,21 @@ class SavedConfigWindow : Window
 
    void OnPosition(int x, int y, int width, int height)
    {
-      sflnprintf("SavedConfigWindow::OnPosition(%i, %i, %i, %i)\n", x, y, width, height);
+      //sflnprintf("SavedConfigWindow::OnPosition(%i, %i, %i, %i)\n", x, y, width, height);
       GuiConfigData data = getGuiConfigData();
       if(data) data.saveWindowPosition(getGuiConfigInstanceId(), this, { x, y }, clientSize);
    }
 
    void OnResize(int width, int height)
    {
-      sflnprintf("SavedConfigWindow::OnResize(%i, %i) -- (%i, %i)\n", width, height, this.normalSizeAnchor.size.w, this.normalSizeAnchor.size.h);
+      //sflnprintf("SavedConfigWindow::OnResize(%i, %i) -- (%i, %i)\n", width, height, this.normalSizeAnchor.size.w, this.normalSizeAnchor.size.h);
       GuiConfigData data = getGuiConfigData();
       if(data) data.saveWindowSize(getGuiConfigInstanceId(), this, clientSize);
    }
 
    bool OnClose(bool parentClosing)
    {
-      sflnprintf("SavedConfigWindow::OnClose\n");
+      //sflnprintf("SavedConfigWindow::OnClose\n");
       GuiConfigData data = getGuiConfigData();
       if(data) data.saveWindowClose(getGuiConfigInstanceId());
       return true;

@@ -76,7 +76,7 @@ public:
    void Attack(Creature opponent)
    {
       Weapon weapon = (Weapon)(equipment ? equipment[EquipmentSlot::rightHand] : null);
-      int d, r, o;
+      int d, o;
       if(!weapon) weapon = bareHand;
       o = GetRandom(0, opponent.dexterity);
       d = GetRandom(0, dexterity - weapon.difficulty);

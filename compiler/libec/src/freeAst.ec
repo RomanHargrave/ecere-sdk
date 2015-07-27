@@ -943,7 +943,11 @@ public void FreeInstance(Instantiation inst)
          if(_class.type == normalClass)
          {
             Instance instance = (Instance)inst.data;
-            delete instance;
+            if(instance._class == (void *)1)
+               // TOFIX: What causes this?
+               Print("");
+            else
+               delete instance;
          }
          else if(_class.type == noHeadClass)
          {

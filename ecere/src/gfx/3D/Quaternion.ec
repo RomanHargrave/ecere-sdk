@@ -221,6 +221,48 @@ public struct Quaternion
       w = (double)(scale0 * from.w + scale1 * to1[3]);
    }
 
+   void SlerpD(Quaternion from, Quaternion to, double t)
+   {
+      double to1[4];
+      double omega, cosom, sinom, scale0, scale1;
+
+      cosom = from.x * to.x + from.y * to.y + from.z * to.z + from.w * to.w;
+
+      if ( cosom < 0.0 )
+      {
+         cosom = -cosom;
+         to1[0] = -to.x;
+         to1[1] = -to.y;
+         to1[2] = -to.z;
+         to1[3] = -to.w;
+      }
+      else
+      {
+         to1[0] = to.x;
+         to1[1] = to.y;
+         to1[2] = to.z;
+         to1[3] = to.w;
+      }
+
+      if ( (1.0 - cosom) > DELTA )
+      {
+         omega = acos(cosom);
+         sinom = sin(omega);
+         scale0 = sin((1.0 - t) * omega) / sinom;
+         scale1 = sin(t * omega) / sinom;
+
+      }
+      else
+      {
+         scale0 = 1.0 - t;
+         scale1 = t;
+      }
+      x = (double)(scale0 * from.x + scale1 * to1[0]);
+      y = (double)(scale0 * from.y + scale1 * to1[1]);
+      z = (double)(scale0 * from.z + scale1 * to1[2]);
+      w = (double)(scale0 * from.w + scale1 * to1[3]);
+   }
+
    void Yaw(Degrees angle)
    {
       double sa = sin( angle / 2 );

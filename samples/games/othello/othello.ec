@@ -44,7 +44,7 @@ class Othello : Window
    OthelloService service { port = OTHELLO_PORT, othello = this };
 
    // Default properties
-   background = black, tabCycle = true, text = "ECERE Othello", borderStyle = sizable, hasClose = true,
+   background = black, tabCycle = true, text = "Ecere Reversi", borderStyle = sizable, hasClose = true,
    size.h = 480, clientSize.w = NUM_COLUMNS*WIDTH;
 
    // --- Othello Utilities ---
